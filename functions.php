@@ -34,7 +34,7 @@ if( function_exists( 'add_image_size' ) ) {
 // Register Nav Menus
 
 register_nav_menus( array(
-	'category_menu' => 'Footer Menu',
+	'footer_menu' => 'Footer Menu',
 ) );
 
 

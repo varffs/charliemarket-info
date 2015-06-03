@@ -23,6 +23,7 @@ for col in 1..$cols
 // VARIABLES
 
 $margin-small = ($gutter)
+$margin-tiny = ($gutter/2)
 $margin-basic = ($gutter*2)
 $margin-large = ($gutter*5)
 
@@ -89,6 +90,16 @@ img
 #footer
   margin-top: $margin-large
   margin-bottom: $margin-large
+
+.menu-item
+  display: inline-block
+  margin: 0 $margin-tiny
+  &:after
+    content: '.'
+    margin-left: $margin-small
+  &:last-child:after
+    content: none
+    margin-left: 0
 
 
 // MEDIA QUERIES

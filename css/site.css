@@ -784,6 +784,18 @@ img {
   margin-top: 80px;
   margin-bottom: 80px;
 }
+.menu-item {
+  display: inline-block;
+  margin: 0 8px;
+}
+.menu-item:after {
+  content: '.';
+  margin-left: 16px;
+}
+.menu-item:last-child:after {
+  content: none;
+  margin-left: 0;
+}
 @media screen and (max-width: 1272px) {
   html {
     width: 100%;
