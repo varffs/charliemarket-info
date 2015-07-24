@@ -786,11 +786,10 @@ img {
 }
 .menu-item {
   display: inline-block;
-  margin: 0 8px;
+  margin: 0 8px 8px 8px;
 }
 .menu-item:after {
-  content: '.';
-  margin-left: 16px;
+  margin: 0 16px;
 }
 .menu-item:last-child:after {
   content: none;
