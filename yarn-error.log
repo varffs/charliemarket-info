@@ -1,0 +1,87 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.19/libexec/bin/yarn.js
+
+PATH: 
+  /Users/patrickbest/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.16.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/patrickbest/Sites/wordpress/charliemarket-info/wp-content/themes/charliemarket-info/package.json: Unexpected token } in JSON at position 224
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.22.19/libexec/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.22.19/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.22.19/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "interglobalvision_wp_boil",
+    "version": "0.0.1",
+    "description": "wp_boil -------",
+    "main": "gulpfile.js",
+    "scripts": {
+      "dev": "webpack --mode=development",
+      "build": "webpack --mode=production",
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/interglobalvision/interglobalvision_wp_boil.git"
+    },
+    "author": "interglobalvision",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/interglobalvision/interglobalvision_wp_boil/issues"
+    },
+    "homepage": "https://github.com/interglobalvision/interglobalvision_wp_boil",
+    "devDependencies": {
+      "@babel/core": "^7.12.10",
+      "@babel/preset-env": "^7.12.10",
+      "autoprefixer": "^10.1.0",
+      "babel-loader": "^8.2.2",
+      "copy-webpack-plugin": "^10.2.4",
+      "core-js": "~3.22.3",
+      "css-loader": "^6.7.1",
+      "css-minimizer-webpack-plugin": "^3.1.1",
+      "cssnano": "^5.1.7",
+      "eslint": "^8.14.0",
+      "eslint-webpack-plugin": "^3.1.1",
+      "file-loader": "^6.2.0",
+      "image-minimizer-webpack-plugin": "^3.2.3",
+      "imagemin": "^8.0.1",
+      "imagemin-gifsicle": "^7.0.0",
+      "imagemin-jpegtran": "^7.0.0",
+      "imagemin-optipng": "^8.0.0",
+      "imagemin-svgo": "^10.0.1",
+      "jshint": "^2.9.3",
+      "jshint-loader": "^0.8.4",
+      "jshint-stylish": "~2.2.1",
+      "kouto-swiss": "^1.1.0",
+      "mini-css-extract-plugin": "^2.6.0",
+      "moment-locales-webpack-plugin": "^1.2.0",
+      "postcss": "^8.2.10",
+      "postcss-loader": "^6.2.1",
+      "release-it": "^15.5.0",
+      "style-loader": "^3.3.1",
+      "stylus": "^0.57.0",
+      "stylus-native-loader": "^1.4.3",
+      "terser-webpack-plugin": "^5.2.4",
+      "webpack": "^5.76.0",
+      "webpack-bundle-analyzer": "^4.3.0",
+      "webpack-cli": "^4.2.0",
+      "webpack-notifier": "^1.12.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

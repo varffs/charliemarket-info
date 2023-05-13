@@ -1,22 +1,27 @@
 <?php
 function scripts_and_styles_method() {
+  $site_js = get_template_directory_uri() . '/dist/main.js';
 
-  $templateuri = get_template_directory_uri() . '/js/';
+  $current_theme = wp_get_theme();
+  $theme_version = $current_theme->get('Version');
 
-  // library.js is to bundle plugins. my.js is your scripts. enqueue more files as needed
-  $jslib = $templateuri."library.js";
-  wp_enqueue_script( 'jslib', $jslib,'','',true);
-  $myscripts = $templateuri."main.js";
-  wp_enqueue_script( 'myscripts', $myscripts,'','',true);
+  wp_register_script( 'site-js', $site_js, array(), $theme_version );
 
-  // enqueue stylesheet here. file does not exist until stylus file is processed
-  wp_enqueue_style( 'site', get_stylesheet_directory_uri() . '/css/site.css' );
+  $global_javascript_variables = array(
+  	'siteUrl' => home_url(),
+  	'themeUrl' => get_template_directory_uri(),
+  	'isAdmin' => current_user_can('administrator') ? 1 : 0,
+  );
 
-  // dashicons for admin
-  if(is_admin()){
+  wp_localize_script( 'site-js', 'WP', $global_javascript_variables );
+
+  wp_enqueue_script( 'site-js', $site_js, array(), $theme_version, true );
+
+  wp_enqueue_style( 'site', get_stylesheet_directory_uri() . '/dist/main.css', null, $theme_version );
+
+  if (is_admin()) {
     wp_enqueue_style( 'dashicons' );
   }
-
 }
 add_action('wp_enqueue_scripts', 'scripts_and_styles_method');
 
