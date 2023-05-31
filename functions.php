@@ -138,4 +138,32 @@ function pr($var) {
   echo '</pre>';
 }
 
+/**
+ * Modify the rendered output of any block.
+ *
+ * @param string $block_content The normal block HTML that would be sent to the screen.
+ * @param array  $block An array of data about the block, and the way the user configured it.
+ */
+function my_custom_render( $block_content, $block ) {
+
+	// For the block in question, render whatever you want, and pull any attrinute you need from $block['attrs'].
+	if ( $block['blockName'] === 'core/gallery' ) {
+    $length = count($block['innerBlocks']);
+
+    echo '<div class="cm-gallery" data-length="' . $length . '"><div class="cm-gallery__inner">';
+
+    foreach($block['innerBlocks'] as $block) {
+      echo $block['innerHTML'];
+    }
+
+    echo '</div></div>';
+    return;
+	}
+
+	// For any other block, just return normal block output.
+	return $block_content;
+
+}
+add_filter( 'render_block', 'my_custom_render', 10, 2 );
+
 ?>
