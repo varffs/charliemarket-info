@@ -113,13 +113,30 @@ img
 
 .cm-gallery
   width 100%
-  overflow-x: auto
+  position relative
+  margin-bottom: 1rem
+  cursor: e-resize
+  &:after
+    content: ''
+    display: block
+    position: absolute
+    top: 0
+    right: 0
+    height: 100%
+    width: 15%
+    max-width: 15rem
+    background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)
+    pointer-events: none
+  .cm-gallery__inner-wrapper
+    overflow-x: auto
   .cm-gallery__inner
     width: 1000%
     display: flex
   .wp-block-image
     display: inline-block
-    margin: 0
+    margin: 0 1rem 0 0
+    &:last-child
+      margin-right: 0
     img
       max-height: 90vh
       width: auto

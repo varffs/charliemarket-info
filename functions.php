@@ -150,13 +150,13 @@ function my_custom_render( $block_content, $block ) {
 	if ( $block['blockName'] === 'core/gallery' ) {
     $length = count($block['innerBlocks']);
 
-    echo '<div class="cm-gallery" data-length="' . $length . '"><div class="cm-gallery__inner">';
+    echo '<div class="cm-gallery" data-length="' . $length . '"><div class="cm-gallery__inner-wrapper"><div class="cm-gallery__inner">';
 
     foreach($block['innerBlocks'] as $block) {
       echo $block['innerHTML'];
     }
 
-    echo '</div></div>';
+    echo '</div></div></div>';
     return;
 	}
 
