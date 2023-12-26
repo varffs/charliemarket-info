@@ -33,7 +33,10 @@ if( function_exists( 'add_image_size' ) ) {
   add_image_size( 'admin-thumb', 150, 150, false );
   add_image_size( 'opengraph', 1200, 630, true );
 
-  add_image_size( 'name', 199, 299, true );
+  add_image_size( 'gallery-x-5', 9999, 540, false );
+  add_image_size( 'gallery', 9999, 1080, false );
+  add_image_size( 'gallery-x1-5', 9999, 1620, false );
+  add_image_size( 'gallery-x2', 9999, 2160, false );
 }
 
 // Register Nav Menus
@@ -153,7 +156,9 @@ function my_custom_render( $block_content, $block ) {
     echo '<div class="cm-gallery" data-length="' . $length . '"><div class="cm-gallery__inner-wrapper"><div class="cm-gallery__inner">';
 
     foreach($block['innerBlocks'] as $block) {
-      echo $block['innerHTML'];
+      echo '<div class="cm-gallery__item">';
+      echo wp_get_attachment_image($block['attrs']['id'], 'gallery', false, array('class' => 'cm-gallery__image'));
+      echo '</div>';
     }
 
     echo '</div></div></div>';

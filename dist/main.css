@@ -821,17 +821,17 @@ img {
   overflow-x: auto;
 }
 .cm-gallery .cm-gallery__inner {
-  width: 1000%;
+  width: 10000%;
   display: flex;
 }
-.cm-gallery .wp-block-image {
+.cm-gallery .cm-gallery__item {
   display: inline-block;
   margin: 0 1rem 0 0;
 }
-.cm-gallery .wp-block-image:last-child {
+.cm-gallery .cm-gallery__item:last-child {
   margin-right: 0;
 }
-.cm-gallery .wp-block-image img {
+.cm-gallery .cm-gallery__image {
   max-height: 90vh;
   width: auto;
 }

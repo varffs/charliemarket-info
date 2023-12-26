@@ -10813,11 +10813,6 @@ __webpack_require__.r(__webpack_exports__);
  // import styl for webpack
 
 
-function l(data) {
-  'use strict';
-
-  console.log(data);
-}
 function getTotalWidth(items) {
   var width = 0;
   items.each(function (index, item) {
@@ -10829,21 +10824,20 @@ function layout() {
   'use strict';
 
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery').each(function (index, item) {
-    l(jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).data('length'));
-    var totalWidth = getTotalWidth(jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.wp-block-image'));
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__inner').css('width', '10000%');
+    var totalWidth = getTotalWidth(jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__item'));
     jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__inner').css('width', totalWidth + 'px');
   });
 }
 function bind() {
-  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery .wp-block-image').on('click', function (event) {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery .cm-gallery__item').on('click', function (event) {
     var $target = jquery__WEBPACK_IMPORTED_MODULE_1___default()(event.currentTarget);
     var $gallery = $target.closest('.cm-gallery');
     var $galleryInnerWrapper = $gallery.find('.cm-gallery__inner-wrapper');
-    var $galleryItems = $galleryInnerWrapper.find('.wp-block-image');
+    var $galleryItems = $galleryInnerWrapper.find('.cm-gallery__item');
     var galleryLength = $galleryItems.length;
     var targetIndex = $target.index();
     var currentIndex = $gallery.data('current-index');
-    console.log(currentIndex);
     if (currentIndex === undefined) {
       $gallery.data('current-index', 0);
       currentIndex = 0;

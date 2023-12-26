@@ -4,11 +4,6 @@ import '../styl/site.styl'; // import styl for webpack
 
 import $ from 'jquery';
 
-function l(data) {
-  'use strict';
-  console.log(data);
-}
-
 function getTotalWidth(items) {
   let width = 0;
   
@@ -23,9 +18,9 @@ function layout() {
   'use strict';
 
   $('.cm-gallery').each(function (index, item) {
-    l($(item).data('length'));
+    $(item).find('.cm-gallery__inner').css('width', '10000%');
 
-    const totalWidth = getTotalWidth($(item).find('.wp-block-image'));
+    const totalWidth = getTotalWidth($(item).find('.cm-gallery__item'));
 
     $(item)
       .find('.cm-gallery__inner')
@@ -34,18 +29,16 @@ function layout() {
 }
 
 function bind() {
-  $('.cm-gallery .wp-block-image').on('click', (event) => {
+  $('.cm-gallery .cm-gallery__item').on('click', (event) => {
     const $target = $(event.currentTarget);
     const $gallery = $target.closest('.cm-gallery');
     const $galleryInnerWrapper = $gallery.find('.cm-gallery__inner-wrapper');
-    const $galleryItems = $galleryInnerWrapper.find('.wp-block-image');
+    const $galleryItems = $galleryInnerWrapper.find('.cm-gallery__item');
 
     const galleryLength = $galleryItems.length;
 
     let targetIndex = $target.index();
     let currentIndex = $gallery.data('current-index');
-
-    console.log(currentIndex);
 
     if (currentIndex === undefined) {
       $gallery.data('current-index', 0);
