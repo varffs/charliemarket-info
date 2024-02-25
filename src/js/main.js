@@ -54,7 +54,10 @@ function layout() {
 function bind() {
   $('.cm-gallery .cm-gallery__item').on('click', (event) => {
     // trigger the next image to load
-    const $nextUnloaded = $('.cm-gallery__image[loading="lazy"]').first();
+    const $nextUnloaded = $(event.currentTarget)
+      .closest('.cm-gallery')
+      .find('.cm-gallery__image[loading="lazy"]')
+      .first();
 
     if ($nextUnloaded.length) {
       $nextUnloaded.attr('loading', 'eager');
@@ -113,8 +116,25 @@ $(() => {
     layout();
   });
 
+  let imagesLoaded = 0;
+
   $('.cm-gallery__image')
-    .one('load', function () {
+    .one('load', (event) => {
+      imagesLoaded += 1;
+
+      if (imagesLoaded > 4 && imagesLoaded % 4 === 0) {
+        const element = event.target;
+        const $gallery = $(element).closest('.cm-gallery');
+
+        const $nextUnloaded = $gallery.find(
+          '.cm-gallery__image[loading="lazy"]'
+        ).slice(0, 3);
+
+        if ($nextUnloaded.length) {
+          $nextUnloaded.attr('loading', 'eager');
+        }
+      }
+
       layout();
     })
     .each(function () {

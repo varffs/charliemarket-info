@@ -10848,7 +10848,7 @@ function layout() {
 function bind() {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery .cm-gallery__item').on('click', function (event) {
     // trigger the next image to load
-    var $nextUnloaded = jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery__image[loading="lazy"]').first();
+    var $nextUnloaded = jquery__WEBPACK_IMPORTED_MODULE_1___default()(event.currentTarget).closest('.cm-gallery').find('.cm-gallery__image[loading="lazy"]').first();
     if ($nextUnloaded.length) {
       $nextUnloaded.attr('loading', 'eager');
     }
@@ -10895,7 +10895,17 @@ jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).on('resize', function () {
     layout();
   });
-  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery__image').one('load', function () {
+  var imagesLoaded = 0;
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery__image').one('load', function (event) {
+    imagesLoaded += 1;
+    if (imagesLoaded > 4 && imagesLoaded % 4 === 0) {
+      var element = event.target;
+      var $gallery = jquery__WEBPACK_IMPORTED_MODULE_1___default()(element).closest('.cm-gallery');
+      var $nextUnloaded = $gallery.find('.cm-gallery__image[loading="lazy"]').slice(0, 3);
+      if ($nextUnloaded.length) {
+        $nextUnloaded.attr('loading', 'eager');
+      }
+    }
     layout();
   }).each(function () {
     if (this.complete) {
