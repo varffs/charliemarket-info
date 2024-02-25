@@ -19,9 +19,19 @@ function layout() {
 
   $('.cm-gallery').each(function (index, item) {
     $(item).find('.cm-gallery__item').each(function (index, item) {
-      const aspectRatio = $(item).find('.cm-gallery__image').attr('width') / $(item).find('.cm-gallery__image').attr('height');
+      const yesIKnowThisHasGotAwkward = true;
+      const imageHeight = $(item).find('.cm-gallery__image').attr('height');
+      const aspectRatio = $(item).find('.cm-gallery__image').attr('width') / imageHeight;
+      const galleryHeight = $(item).outerHeight(true);
 
-      $(item).css('width', $(item).outerHeight(true) * aspectRatio + 'px');
+      if (yesIKnowThisHasGotAwkward && aspectRatio > 1) {
+        const trueImageWidth = $(item)
+          .find('.cm-gallery__image')
+          .outerWidth(true);
+        $(item).css('width', trueImageWidth + 'px');
+      } else {
+        $(item).css('width', galleryHeight * aspectRatio + 'px');
+      }
     });
 
     $(item).find('.cm-gallery__inner').css('width', '10000%');

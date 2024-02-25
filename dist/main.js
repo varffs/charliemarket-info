@@ -10825,8 +10825,16 @@ function layout() {
 
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery').each(function (index, item) {
     jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__item').each(function (index, item) {
-      var aspectRatio = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').attr('width') / jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').attr('height');
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('width', jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).outerHeight(true) * aspectRatio + 'px');
+      var yesIKnowThisHasGotAwkward = true;
+      var imageHeight = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').attr('height');
+      var aspectRatio = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').attr('width') / imageHeight;
+      var galleryHeight = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).outerHeight(true);
+      if (yesIKnowThisHasGotAwkward && aspectRatio > 1) {
+        var trueImageWidth = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').outerWidth(true);
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('width', trueImageWidth + 'px');
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('width', galleryHeight * aspectRatio + 'px');
+      }
     });
     jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__inner').css('width', '10000%');
     var totalWidth = getTotalWidth(jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__item'));
