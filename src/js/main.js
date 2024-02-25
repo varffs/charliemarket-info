@@ -19,16 +19,23 @@ function layout() {
 
   $('.cm-gallery').each(function (index, item) {
     $(item).find('.cm-gallery__item').each(function (index, item) {
-      const yesIKnowThisHasGotAwkward = true;
+      const yesIKnowThisHasGotAwkwardThereHaveBeenALotOfIterationsAndItIsAFavor = true;
+
       const imageHeight = $(item).find('.cm-gallery__image').attr('height');
       const aspectRatio = $(item).find('.cm-gallery__image').attr('width') / imageHeight;
       const galleryHeight = $(item).outerHeight(true);
 
-      if (yesIKnowThisHasGotAwkward && aspectRatio > 1) {
-        const trueImageWidth = $(item)
-          .find('.cm-gallery__image')
-          .outerWidth(true);
-        $(item).css('width', trueImageWidth + 'px');
+      if (yesIKnowThisHasGotAwkwardThereHaveBeenALotOfIterationsAndItIsAFavor && aspectRatio > 1) {
+        if (imageHeight < galleryHeight) {
+          $(item).css(
+            'width',
+            $(item).find('.cm-gallery__image').attr('width') + 'px'
+          );
+        } else {
+          const trueImageWidth = $(item).find('.cm-gallery__image').outerWidth(true);
+
+          $(item).css('width', trueImageWidth + 'px');        
+        }
       } else {
         $(item).css('width', galleryHeight * aspectRatio + 'px');
       }
@@ -112,7 +119,7 @@ $(() => {
     })
     .each(function () {
       if (this.complete) {
-        $(this).load();
+        $(this).trigger('load');
       }
     });
 });
