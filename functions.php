@@ -155,9 +155,25 @@ function my_custom_render( $block_content, $block ) {
 
     echo '<div class="cm-gallery" data-length="' . $length . '"><div class="cm-gallery__inner-wrapper"><div class="cm-gallery__inner">';
 
-    foreach($block['innerBlocks'] as $block) {
+    foreach($block['innerBlocks'] as $key => $block) {
+      $attributes = array(
+        'class' => 'cm-gallery__image'
+      );
+
+      if ($key === 0) {
+        $attributes['fetchpriority'] = 'high';
+      } else if ($key === 1) {
+        $attributes['fetchpriority'] = 'medium';
+      } else if ($key === 2 || $key === 3) {
+        $attributes['fetchpriority'] = 'low';
+      } else
+
+      if ($key > 4) {
+        $attributes['loading'] = 'lazy';
+      }
+
       echo '<div class="cm-gallery__item">';
-      echo wp_get_attachment_image($block['attrs']['id'], 'gallery', false, array('class' => 'cm-gallery__image'));
+      echo wp_get_attachment_image($block['attrs']['id'], 'gallery', false, $attributes);
       echo '</div>';
     }
 

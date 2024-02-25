@@ -817,23 +817,24 @@ img {
   background-image: linear-gradient(90deg,rgba(255,255,255,0) 0%,#fff 100%);
   pointer-events: none;
 }
-.cm-gallery .cm-gallery__inner-wrapper {
+.cm-gallery__inner-wrapper {
   overflow-x: auto;
 }
-.cm-gallery .cm-gallery__inner {
+.cm-gallery__inner {
   width: 10000%;
   display: flex;
 }
-.cm-gallery .cm-gallery__item {
+.cm-gallery__item {
   display: inline-block;
   margin: 0 1rem 0 0;
 }
-.cm-gallery .cm-gallery__item:last-child {
+.cm-gallery__item:last-child {
   margin-right: 0;
 }
-.cm-gallery .cm-gallery__image {
+.cm-gallery__image {
   max-height: 90vh;
   width: auto;
+  min-width: 300px;
 }
 
 

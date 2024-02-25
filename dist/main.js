@@ -10824,6 +10824,10 @@ function layout() {
   'use strict';
 
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery').each(function (index, item) {
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__item').each(function (index, item) {
+      var aspectRatio = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').attr('width') / jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').attr('height');
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('width', jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).outerHeight(true) * aspectRatio + 'px');
+    });
     jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__inner').css('width', '10000%');
     var totalWidth = getTotalWidth(jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__item'));
     jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__inner').css('width', totalWidth + 'px');
@@ -10831,6 +10835,13 @@ function layout() {
 }
 function bind() {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery .cm-gallery__item').on('click', function (event) {
+    // trigger the next image to load
+    var $nextUnloaded = jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery__image[loading="lazy"]').first();
+    if ($nextUnloaded.length) {
+      $nextUnloaded.attr('loading', 'eager');
+    }
+
+    // work out indexes
     var $target = jquery__WEBPACK_IMPORTED_MODULE_1___default()(event.currentTarget);
     var $gallery = $target.closest('.cm-gallery');
     var $galleryInnerWrapper = $gallery.find('.cm-gallery__inner-wrapper');
@@ -10844,7 +10855,6 @@ function bind() {
     }
 
     // work out which we want to scroll to based on current index and target index
-
     if (targetIndex === currentIndex && targetIndex !== galleryLength - 1) {
       // if the target is actually already active scroll to the next
       targetIndex += 1;
@@ -10855,7 +10865,6 @@ function bind() {
     }
 
     // scroll to that element with one function call
-
     var targetLeft = $galleryItems.eq(targetIndex).offset().left;
     var baseLeft = $galleryInnerWrapper.offset().left;
     var wrapperScrollLeft = $galleryInnerWrapper[0].scrollLeft;
@@ -10866,13 +10875,20 @@ function bind() {
     $gallery.data('current-index', targetIndex);
   });
 }
-jquery__WEBPACK_IMPORTED_MODULE_1___default()(document).ready(function () {
+jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
   'use strict';
 
   layout();
   bind();
   jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).on('resize', function () {
     layout();
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery__image').one('load', function () {
+    layout();
+  }).each(function () {
+    if (this.complete) {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).load();
+    }
   });
 });
 }();
