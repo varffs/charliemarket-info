@@ -18,6 +18,15 @@ function layout() {
   'use strict';
 
   $('.cm-gallery').each(function (index, item) {
+    // height logic: take the full height of the footer and the top margin of main content and the height of post title and also the bottom margin of the gallery, sum and set gallery height as window minus that.
+    const footerHeight = $('#footer').outerHeight(true);
+    const mainContentTopMargin = $('#main-content').css('margin-top');
+    const postTitleHeight = $('.post__title').outerHeight(true);
+    const galleryBottomMargin = $(item).css('margin-bottom');
+    const galleryHeight = $(window).height() - footerHeight - parseInt(mainContentTopMargin) - postTitleHeight - parseInt(galleryBottomMargin);
+
+    $(item).css('height', galleryHeight + 'px').addClass('cm-gallery--loaded');
+
     $(item).find('.cm-gallery__item').each(function (index, item) {
       const yesIKnowThisHasGotAwkwardThereHaveBeenALotOfIterationsAndItIsAFavor = true;
 
@@ -25,18 +34,20 @@ function layout() {
       const aspectRatio = $(item).find('.cm-gallery__image').attr('width') / imageHeight;
       const galleryHeight = $(item).outerHeight(true);
 
-      if (yesIKnowThisHasGotAwkwardThereHaveBeenALotOfIterationsAndItIsAFavor && aspectRatio > 1) {
-        if (imageHeight < galleryHeight) {
+      if (yesIKnowThisHasGotAwkwardThereHaveBeenALotOfIterationsAndItIsAFavor && aspectRatio > 1) { // landscape image
+        if (imageHeight < galleryHeight) { // if the original image is vertically smaller than the gallery
           $(item).css(
             'width',
             $(item).find('.cm-gallery__image').attr('width') + 'px'
           );
-        } else {
+        } else { 
+          $(item).css('width', 'auto');
+            
           const trueImageWidth = $(item).find('.cm-gallery__image').outerWidth(true);
 
           $(item).css('width', trueImageWidth + 'px');        
         }
-      } else {
+      } else { // portrait image
         $(item).css('width', galleryHeight * aspectRatio + 'px');
       }
     });

@@ -10824,19 +10824,30 @@ function layout() {
   'use strict';
 
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.cm-gallery').each(function (index, item) {
+    // height logic: take the full height of the footer and the top margin of main content and the height of post title and also the bottom margin of the gallery, sum and set gallery height as window minus that.
+    var footerHeight = jquery__WEBPACK_IMPORTED_MODULE_1___default()('#footer').outerHeight(true);
+    var mainContentTopMargin = jquery__WEBPACK_IMPORTED_MODULE_1___default()('#main-content').css('margin-top');
+    var postTitleHeight = jquery__WEBPACK_IMPORTED_MODULE_1___default()('.post__title').outerHeight(true);
+    var galleryBottomMargin = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('margin-bottom');
+    var galleryHeight = jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).height() - footerHeight - parseInt(mainContentTopMargin) - postTitleHeight - parseInt(galleryBottomMargin);
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('height', galleryHeight + 'px').addClass('cm-gallery--loaded');
     jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__item').each(function (index, item) {
       var yesIKnowThisHasGotAwkwardThereHaveBeenALotOfIterationsAndItIsAFavor = true;
       var imageHeight = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').attr('height');
       var aspectRatio = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').attr('width') / imageHeight;
       var galleryHeight = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).outerHeight(true);
       if (yesIKnowThisHasGotAwkwardThereHaveBeenALotOfIterationsAndItIsAFavor && aspectRatio > 1) {
+        // landscape image
         if (imageHeight < galleryHeight) {
+          // if the original image is vertically smaller than the gallery
           jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('width', jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').attr('width') + 'px');
         } else {
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('width', 'auto');
           var trueImageWidth = jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).find('.cm-gallery__image').outerWidth(true);
           jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('width', trueImageWidth + 'px');
         }
       } else {
+        // portrait image
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(item).css('width', galleryHeight * aspectRatio + 'px');
       }
     });

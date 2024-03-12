@@ -93,12 +93,16 @@ img
   margin-bottom: $margin-large
   box-sizing: border-box
 
+.post__title
+  display: block
+  margin-bottom: $margin-tiny
+
 
 // FOOTER
 
 #footer
-  margin-top: $margin-large
-  margin-bottom: $margin-large
+  margin-top: $margin-basic
+  margin-bottom: $margin-small
 
 .menu-item
   display: inline-block
@@ -120,6 +124,8 @@ img
 
 .cm-gallery
   width 100%
+  min-height: 80vh
+  opacity: 0
   position relative
   margin-bottom: 1rem
   cursor: e-resize
@@ -134,13 +140,16 @@ img
     max-width: 15rem
     background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)
     pointer-events: none
+  &--loaded
+    opacity: 1
 
 .cm-gallery__inner-wrapper
+  height: 100%
   overflow-x: auto
 
 .cm-gallery__inner
   width: 10000%
-  height: 85vh
+  height: 100%
   display: flex
 
 .cm-gallery__item

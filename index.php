@@ -17,7 +17,7 @@ if( have_posts() ) {
         echo 'padding-right:' . $meta['_igv_right'][0] . '%;';
       }
 ?>">
-      <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+      <a href="<?php the_permalink() ?>" class="post__title"><?php the_title(); ?></a>
       <?php the_content(); ?>
     </article>
 <?php

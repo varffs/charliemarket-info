@@ -785,9 +785,13 @@ img {
   margin-bottom: 80px;
   box-sizing: border-box;
 }
+.post__title {
+  display: block;
+  margin-bottom: 8px;
+}
 #footer {
-  margin-top: 80px;
-  margin-bottom: 80px;
+  margin-top: 32px;
+  margin-bottom: 16px;
 }
 .menu-item {
   display: inline-block;
@@ -807,6 +811,10 @@ img {
 }
 .cm-gallery {
   width: 100%;
+  min-height: 80vh;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
   position: relative;
   margin-bottom: 1rem;
   cursor: e-resize;
@@ -823,12 +831,18 @@ img {
   background-image: linear-gradient(90deg,rgba(255,255,255,0) 0%,#fff 100%);
   pointer-events: none;
 }
+.cm-gallery--loaded {
+  -ms-filter: none;
+  filter: none;
+  opacity: 1;
+}
 .cm-gallery__inner-wrapper {
+  height: 100%;
   overflow-x: auto;
 }
 .cm-gallery__inner {
   width: 10000%;
-  height: 85vh;
+  height: 100%;
   display: flex;
 }
 .cm-gallery__item {
